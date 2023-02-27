@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "github.com/mrudraia/fleet_manager";
+
+message Identitie {
+    string account_id = 1;
+    enum identity_type{
+        AWS = 0;
+        RedHat = 1;
+    }
+    message credentials {
+        
+    }
+}
+
+message CreateIdentitieRequest {
+    Identitie identitie = 1;
+}
+
+message CreateIdentitieResponse {
+    Identitie identitie = 1;
+}
+
+message ReadIdentitieRequest {
+    string account_id = 1;
+}
+
+message ReadIdentitieResponse {
+    Identitie identitie = 1;
+}
+
+message ReadIdentitiesRequest {
+
+}
+
+message ReadIdentitiesResponse {
+    repeated Identitie identitie = 1;
+}
+
+message UpdateIdentitieRequest {
+    Identitie Identitie = 1;
+}
+
+message UpdateIdentitieResponse {
+    Identitie Identitie = 1;
+}
+
+message DeleteIdentitieRequest {
+    string account_id = 1;
+}
+
+message DeleteIdentitieResponse {
+    bool success = 1;
+}
+
+service IdentitieService {
+    rpc CreateIdentitie(CreateIdentitieRequest) returns (CreateIdentitieResponse) {}
+    rpc GetIdentitie(ReadIdentitieRequest) returns (ReadIdentitieResponse) {}
+    rpc GetIdentities(ReadIdentitiesRequest) returns (ReadIdentitiesResponse) {}
+    rpc UpdateIdentitie(UpdateIdentitieRequest) returns (UpdateIdentitieResponse) {}
+    rpc DeleteIdentitie(DeleteIdentitieRequest) returns (DeleteIdentitieResponse) {}
+}
